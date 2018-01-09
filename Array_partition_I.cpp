@@ -9,7 +9,7 @@ Explanation: n is 2, and the maximum sum of pairs is 4 = min(1, 2) + min(3, 4).
 */
 
 /*
-思路：排序取奇数位上的数相加
+鎬濊矾锛氭帓搴忓彇濂囨暟浣嶄笂鐨勬暟鐩稿姞
 */
 
 
