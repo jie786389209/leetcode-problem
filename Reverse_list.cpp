@@ -82,9 +82,9 @@ public:
 		ListNode* cur = head;   //012345
 		while (cur && cur->next) {
 			ListNode* temp = pre->next;
-			pre->next = cur->next;
-			cur->next = cur->next->next;
-			pre->next->next = temp;
+			pre->next = cur->next;  //0 -> 2
+			cur->next = cur->next->next; //1 -> 3
+			pre->next->next = temp;  //2 -> 1
 		}
 		return new_head->next;
 	}
