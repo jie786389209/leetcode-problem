@@ -47,7 +47,7 @@ ListNode* CreateList(ListNode* Head){
         Tail = NewNode;
         NewNode->Next = NULL;
     }
-    return Head->Next;
+    return Head;
 }
 ///打印链表
 void printList(ListNode* list){
@@ -61,6 +61,26 @@ void printList(ListNode* list){
     cout << endl;
 }
 
+class Solution{
+public:
+    ListNode* DeLeteNode(int x,ListNode* list)
+    {
+        ListNode* temp1=list;
+        ListNode* temp2;
+        while(temp1->Next)
+        {
+            if(temp1->Next->Data==x)
+            {
+                temp2=temp1->Next;
+                temp1->Next=temp1->Next->Next;
+                delete(temp2);
+            }
+
+            temp1=temp1->Next;
+        }
+        return list->Next;
+    }
+};
 
 
 ///方法二，比较移位，不用迭代，条件是不用预先排好序的list
@@ -92,13 +112,13 @@ public:
         return Head->Next;
     }
 };
-*/
 
+*/
 
 ///方法一：迭代（缺点是list过长会引起stack溢出）
 ///比较两个list，较小值保留并以为下一个，再次迭代,条件是必须排序好的list
 ///Java
-class Solution {
+/*class Solution {
 public:
     ListNode *mergeTwoLists(ListNode *l1, ListNode *l2) {
         if(l1 == NULL) return l2;
@@ -113,7 +133,7 @@ public:
         }
     }
 };
-
+*/
 
 
 int  main()
@@ -121,13 +141,18 @@ int  main()
 
     ListNode* List1 = NULL;
     List1 = CreateList(List1);
+    printList(List1->Next);
+
+    Solution x;
+    List1 = x.DeLeteNode(3,List1);
     printList(List1);
-    ListNode* List2 = NULL;
+  /*  ListNode* List2 = NULL;
     List2 = CreateList(List2);
     printList(List2);
 
     Solution x;
     ListNode* List3 = x.mergeTwoLists(List1,List2);
     printList(List3);
+    */
 }
 
