@@ -1,5 +1,3 @@
-﻿
-
 #include "stdafx.h"
 #include<iostream>
 using namespace std;
@@ -50,21 +48,23 @@ void printList(ListNode* list) {
 }
 
 ///方法一：递归调用
-class Solution {
+/*class Solution {
 public:
 	ListNode * reverseList(ListNode* head) {
 		///出口，选head作为单元改变接口
 		if (!head || !(head->Next)) return head;//head不存在或则到达尾端返回，因为要把最后一个当新的头
 		///达到末端，并保存node作新头
 		ListNode* node = reverseList(head->Next); //返回5，并保存为node作为倒置后的新头
-		///前后单元进行操作
+	        ///前后单元进行操作
 		head->Next->Next = head;   //当上一句返回head时是5，则这里是4
-		                           //迭代总结：迭代上下的自身调用的局部变量相差一个单元
+		//迭代总结：迭代上下的自身调用的局部变量相差一个单元
 		head->Next = NULL;
 		///返回上一层单元
 		return node;
 	}
 };
+*/
+
 
 ///方法二：插入法
 ///xWell, since the head pointer may also be modified,
@@ -76,17 +76,17 @@ public:
 class Solution {
 public:
 	ListNode * reverseList(ListNode* head) {
-		ListNode* new_head = new ListNode(0);
-		new_head->next = head;
+		ListNode* new_head = new ListNode;
+		new_head->Next = head;
 		ListNode* pre = new_head;
 		ListNode* cur = head;   //012345
-		while (cur && cur->next) {
-			ListNode* temp = pre->next;
-			pre->next = cur->next;  //0 -> 2
-			cur->next = cur->next->next; //1 -> 3
-			pre->next->next = temp;  //2 -> 1
+		while (cur && cur->Next) {
+			ListNode* temp = pre->Next;
+			pre->Next = cur->Next;  //0 -> 2
+			cur->Next = cur->Next->Next; //1 -> 3
+			pre->Next->Next = temp;  //2 -> 1
 		}
-		return new_head->next;
+		return new_head->Next;
 	}
 };
 
@@ -94,19 +94,22 @@ public:
 ///1->2->3->4->5     第一步：1->NULL  2->3->4->5->NULL
 ///第二步： 2->1->NULL  3->4->5->NULL  
 ///...
-class Solution {
+/*class Solution {
 public:
 	ListNode * reverseList(ListNode* head) {
 		ListNode* pre = NULL;
 		while (head) {
-			ListNode* next = head->next;
-			head->next = pre;
+			ListNode* next = head->Next;
+			head->Next = pre;
 			pre = head; //更新pre和head标志，都下移一位
 			head = next;
 		}
 		return pre;
 	}
 };
+*/
+
+
 
 int  main()
 {
@@ -114,7 +117,7 @@ int  main()
 	ListNode* List1 = NULL;
 	List1 = CreateList(List1);
 	printList(List1);
-	
+
 
 	Solution x;
 	ListNode* List3 = x.reverseList(List1);
