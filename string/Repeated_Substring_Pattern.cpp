@@ -1,11 +1,11 @@
 方法一：使用KMP
 
 First, we build the KMP table.
-
 Roughly speaking, dp[i+1] stores the maximum number of characters that the string is repeating itself up to position i.
 Therefore, if a string repeats a length 5 substring 4 times, then the last entry would be of value 15.
 To check if the string is repeating itself, we just need the last entry to be non-zero and str.size() to divide (str.size()-last entry).
-    bool repeatedSubstringPattern(string str) {
+    
+  bool repeatedSubstringPattern(string str) {
         int i = 1, j = 0, n = str.size();
         vector<int> dp(n+1,0);
         while( i < str.size() ){
@@ -42,7 +42,8 @@ public:
     }
 };
 
-
+////////////////////////////////
+方法四：前后各取一个单位比较
 bool repeatedSubstringPattern(string str) {
     int n = str.length();
     for (int i = 1; i <= n / 2; i++)
