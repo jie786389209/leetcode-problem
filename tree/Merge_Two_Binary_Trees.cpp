@@ -41,12 +41,12 @@ TreeNode* stringToTreeNode(string input) {
         return nullptr;
     }
 
-    string item;
+    string item;//单个item
     stringstream ss;
-    ss.str(input);
+    ss.str(input);//把字符串input复制到ss流中
 
-    getline(ss, item, ',');
-    TreeNode* root = new TreeNode(stoi(item));
+    getline(ss, item, ',');//ss流中的字符串以，作为分割，得到的每一个字符串放进item中
+    TreeNode* root = new TreeNode(stoi(item));//字符串转为数字
     queue<TreeNode*> nodeQueue;
     nodeQueue.push(root);
 
