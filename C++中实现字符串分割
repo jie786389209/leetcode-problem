@@ -1,0 +1,50 @@
+1. 利用istringstream
+int main() {
+     string sentence = "And I         feel fine... asdf";
+     istringstream iss(sentence);
+     vector<string> strs{istream_iterator<string>(iss), istream_iterator<string>()};
+     for(auto &s: strs) {
+         cout << s << endl;
+     }
+ }
+
+用字符串构造成字符串流，然后通过字符串流迭代器添加到vector中。
+istream_iterator是使用空格进行分割的，所以这个方法的局限性就是没法使用空格以外的字符进行分割字符串
+
+///////////////////////////////////////////////////////////
+
+2. 利用getline函数
+void split(const std::string &s, std::vector<std::string> &elems, char delim = ' ') {
+    std::stringstream ss;
+    ss.str(s);
+    std::string item;
+    while (std::getline(ss, item, delim)) {
+        elems.push_back(item);
+    }
+}
+
+int main()
+{
+    string line = "asd fasdf fadf fa";
+    vector<string> strs;
+    split(line, strs);
+    for(auto &s: strs) {
+        cout << s << endl;
+    }
+    return 0;
+}
+
+getline函数，顾名思义，是用来获取一行数据的，不过它的第三个参数也可以修改成其他字符，这样就可以将其他字符作为行分割符使用。
+不过这种实现的缺点就是，getline每遇到一个行分割符都会返回一次，所以对于分割符连续的情况就束手无策了。
+
+例如：
+1 string line = "asd   fasdf   fadf fa";
+打印结果就是：
+asd
+
+
+fasdf
+
+
+fadf
+fa
