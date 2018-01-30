@@ -21,6 +21,7 @@ public:
     }
 };
 
+///删除左边空格
 void trimLeftTrailingSpaces(string &input) {
     input.erase(input.begin(), find_if(input.begin(), input.end(), [](int ch) {
         return !isspace(ch);
@@ -33,6 +34,7 @@ void trimRightTrailingSpaces(string &input) {
     }).base(), input.end());
 }
 
+///
 TreeNode* stringToTreeNode(string input) {
     trimLeftTrailingSpaces(input);
     trimRightTrailingSpaces(input);
@@ -49,7 +51,7 @@ TreeNode* stringToTreeNode(string input) {
     TreeNode* root = new TreeNode(stoi(item));//字符串转为数字
     queue<TreeNode*> nodeQueue;
     nodeQueue.push(root);
-
+///利用queue
     while (true) {
         TreeNode* node = nodeQueue.front();
         nodeQueue.pop();
