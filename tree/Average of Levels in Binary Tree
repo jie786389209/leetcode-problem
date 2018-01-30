@@ -9,7 +9,7 @@
  */
  
  /////////////
- BFS广度搜索
+ BFS广度搜索,从上到下压出栈，这样保持level一致
  
 class Solution {
 public:
