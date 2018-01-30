@@ -17,9 +17,9 @@ public:
         vector<double> res;
         queue<TreeNode*> q;
         q.push(root);
-        while(!q.empty()) {
+        while(!q.empty()) { //每次循环一个level
             long temp=0;
-            int s=q.size();
+            int s=q.size(); //重新计算某level的大小，很重要
             for(int i=0;i<s;i++) {
                 TreeNode* t=q.front();
                 q.pop();
