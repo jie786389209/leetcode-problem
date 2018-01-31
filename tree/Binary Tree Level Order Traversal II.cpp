@@ -15,6 +15,7 @@ return its bottom-up level order traversal as:
 ]
 
 ////////////////////
+BFS
 
 class Solution {
 public:
@@ -42,4 +43,30 @@ public:
         }
         return res;    
     }
+};
+
+
+/////////////////
+DFS
+class Solution {
+public:
+    vector<vector<int> > res;
+
+void DFS(TreeNode* root, int level)
+{
+    if (root == NULL) return;
+    if (level == res.size()) // 确实这句会导致下一句访问空指针，比如res[2]要先建立再能赋值，否则res[2]不存在使赋值给空指针
+    {
+        res.push_back(vector<int>()); // Create a new level
+    }
+    
+    res[level].push_back(root->val); // Add the current value to its level
+    DFS(root->left, level+1); // Go to the next level
+    DFS(root->right,level+1);
+}
+
+vector<vector<int> > levelOrderBottom(TreeNode *root) {
+    DFS(root, 0);
+    return vector<vector<int> > (res.rbegin(), res.rend());
+}
 };
