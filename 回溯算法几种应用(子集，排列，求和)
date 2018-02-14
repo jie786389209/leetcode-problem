@@ -14,7 +14,7 @@ private void backtrack(List<List<Integer>> list , List<Integer> tempList, int []
     for(int i = start; i < nums.length; i++){
         tempList.add(nums[i]);
         backtrack(list, tempList, nums, i + 1);
-        tempList.remove(tempList.size() - 1);
+        tempList.remove(tempList.size() - 1);      ///记得把数pop出来，否则一直存没有出会造成一大串
     }
 }
 Subsets II (contains duplicates) : https://leetcode.com/problems/subsets-ii/
